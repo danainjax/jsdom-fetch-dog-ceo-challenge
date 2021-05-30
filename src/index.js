@@ -5,6 +5,13 @@ const breedUrl = 'https://dog.ceo/api/breeds/list/all'
 const ul = document.getElementById('dog-breeds');
 console.log(ul);
 
+ul.addEventListener('click', (event) => {
+  if (event.target.style.color === 'red') {
+    event.target.style.color ='black'
+  } else {
+  event.target.style.color = 'red';
+}
+})
 //Challenge 1
 // fetch the images using the url above ⬆️
 // parse the response as JSON
@@ -71,14 +78,12 @@ function getImages() {
       //breeds returns a message and object of arrays(plural)
       const breedsArray = Object.keys(breeds.message);
       const breedsLis = createLiElement(breedsArray);
-      // console.log(breedsLis);
       breedsLis.forEach(element => {
         console.log(element)
         ul.innerHTML += (element) 
       })
-      // debugger;
-      //breeds.message is an object with an array for each breed
-      //so for each array we need to make an element??
+      
+      
       
     })
 
@@ -101,4 +106,5 @@ function getImages() {
 //   CHALLENGE 3 Once all of the breeds are rendered in the <ul>, add JavaScript so that the font color of a particular <li> changes on click. This can be a color of your choosing.
 
 // When the user clicks any of the dog breed list items, the color the text should change.
+
 
