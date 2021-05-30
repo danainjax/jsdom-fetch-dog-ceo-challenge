@@ -3,7 +3,26 @@ const imgURL = "https://dog.ceo/api/breeds/image/random/4"
 const container = document.getElementById('dog-image-container')
 const breedUrl = 'https://dog.ceo/api/breeds/list/all'
 const ul = document.getElementById('dog-breeds');
-console.log(ul);
+const dropdown = document.getElementById('breed-dropdown')
+let breedsArray = []
+
+dropdown.addEventListener('change', handleChange)
+
+
+
+function handleChange (event) {
+  
+  const letter = event.target.value 
+  const filteredBreeds = breedsArray.filter(breed => breed.startsWith(letter))
+  const filteredBreedsLis = createLiElement(filteredBreeds)
+  ul.innerHTML = ""
+  filteredBreedsLis.forEach(element => {
+   
+    ul.innerHTML += (element); 
+  }
+  
+  // event.
+)}
 
 ul.addEventListener('click', (event) => {
   if (event.target.style.color === 'red') {
@@ -76,7 +95,7 @@ function getImages() {
     .then(breeds => {
       console.log(breeds)
       //breeds returns a message and object of arrays(plural)
-      const breedsArray = Object.keys(breeds.message);
+       breedsArray = Object.keys(breeds.message);
       const breedsLis = createLiElement(breedsArray);
       breedsLis.forEach(element => {
         console.log(element)
@@ -108,3 +127,6 @@ function getImages() {
 // When the user clicks any of the dog breed list items, the color the text should change.
 
 
+//CHALLENGE 4 - add JavaScript so that the user can filter breeds that start with a particular letter using a dropdown.
+
+// For example, if the user selects 'a' in the dropdown, only show the breeds with names that start with the letter a. For simplicity, the dropdown only includes the letters a-d. However, we can imagine expanding this to include the entire alphabet
